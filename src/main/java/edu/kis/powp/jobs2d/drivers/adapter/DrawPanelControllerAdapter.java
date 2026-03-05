@@ -22,14 +22,17 @@ public class DrawPanelControllerAdapter implements Job2dDriver {
 		this.startY = y;
 	}
 
-	@Override
-	public void operateTo(int x, int y) {
-		ILine line = LineFactory.getBasicLine();
-		line.setStartCoordinates(this.startX, this.startY);
-		line.setEndCoordinates(x, y);
+    @Override
+    public void operateTo(int x, int y) {
+        ILine line = LineFactory.getBasicLine();
+        line.setStartCoordinates(this.startX, this.startY);
+        line.setEndCoordinates(x, y);
 
-		drawLine(line);
-	}
+        controller.drawLine(line);
+
+        this.startX = x;
+        this.startY = y;
+    }
 
 	@Override
 	public String toString() {
