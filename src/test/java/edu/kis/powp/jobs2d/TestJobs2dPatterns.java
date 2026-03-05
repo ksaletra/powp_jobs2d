@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import edu.kis.powp.jobs2d.magicpresets.FiguresJane;
+import edu.kis.powp.jobs2d.drivers.adapter.AbstractDriverAdapter;
 import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
@@ -31,6 +33,11 @@ public class TestJobs2dPatterns {
             FiguresJoe.figureScript2(DriverFeature.getDriverManager().getCurrentDriver());
         });
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
+        application.addTest("Figure Jane", (ActionEvent e) -> {
+            Job2dDriver currentDriver = DriverFeature.getDriverManager().getCurrentDriver();
+            AbstractDriverAdapter adapter = new AbstractDriverAdapter(currentDriver);
+            FiguresJane.figureScript(adapter);
+        });
 	}
 
 	/**
