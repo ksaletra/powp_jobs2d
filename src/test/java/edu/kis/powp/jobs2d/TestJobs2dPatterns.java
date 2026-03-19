@@ -17,7 +17,8 @@ import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
-
+import edu.kis.powp.command.FigureCommandFactory;
+import edu.kis.powp.command.ComplexCommand;
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -37,6 +38,21 @@ public class TestJobs2dPatterns {
             Job2dDriver currentDriver = DriverFeature.getDriverManager().getCurrentDriver();
             AbstractDriverAdapter adapter = new AbstractDriverAdapter(currentDriver);
             FiguresJane.figureScript(adapter);
+
+        });
+        application.addTest("Rectangle Command", (ActionEvent e) -> {
+            ComplexCommand rectangle = FigureCommandFactory.createRectangle(-100, -100, 200, 200);
+            rectangle.execute(DriverFeature.getDriverManager().getCurrentDriver());
+        });
+
+        application.addTest("Triangle Command", (ActionEvent e) -> {
+            ComplexCommand triangle = FigureCommandFactory.createTriangle(0, -100, 100, 100, -100, 100);
+            triangle.execute(DriverFeature.getDriverManager().getCurrentDriver());
+        });
+
+        application.addTest("Circle Command", (ActionEvent e) -> {
+            ComplexCommand circle = FigureCommandFactory.createCircle(0, 0, 100, 36);
+            circle.execute(DriverFeature.getDriverManager().getCurrentDriver());
         });
 	}
 
