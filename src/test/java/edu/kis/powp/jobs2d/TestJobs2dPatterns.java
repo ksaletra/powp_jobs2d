@@ -19,6 +19,7 @@ import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
 import edu.kis.powp.command.FigureCommandFactory;
 import edu.kis.powp.command.ComplexCommand;
+import edu.kis.powp.command.CommandRecorder;
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -53,6 +54,19 @@ public class TestJobs2dPatterns {
         application.addTest("Circle Command", (ActionEvent e) -> {
             ComplexCommand circle = FigureCommandFactory.createCircle(0, 0, 100, 36);
             circle.execute(DriverFeature.getDriverManager().getCurrentDriver());
+        });
+        application.addTest("Recorded FigureJoe1", (ActionEvent e) -> {
+            CommandRecorder recorder = new CommandRecorder();
+            FiguresJoe.figureScript1(recorder);
+            ComplexCommand recorded = recorder.getRecordedCommand();
+            recorded.execute(DriverFeature.getDriverManager().getCurrentDriver());
+        });
+
+        application.addTest("Recorded FigureJoe2", (ActionEvent e) -> {
+            CommandRecorder recorder = new CommandRecorder();
+            FiguresJoe.figureScript2(recorder);
+            ComplexCommand recorded = recorder.getRecordedCommand();
+            recorded.execute(DriverFeature.getDriverManager().getCurrentDriver());
         });
 	}
 
